@@ -1,1 +1,17 @@
 # Starfield_Fauna
+
+Image classification dataset:
+20,000 (854 x 480) images from 50 fauna species in the video game Starfield.
+Images were extracted from video capture.  About 2 minutes of footage was shot in all or most of the species biomes.
+One minute of daytime and nighttime footage respectively, usually in two 30-second takes to vary the background.
+A powershell script is used to establish a frame extract rate and extract the 400 frames plus some extra to replace
+ images that were obstructed/blurry or contained other fauna species ignoring birds/critters.
+ The shots are for the most part closeup and centered to keep the task focused on discerning between 50 species
+ rather than finding the creature in the image.  The images are initially randomized however some normalization
+ was done if the ratio of images from some biomes was heavily skewed between the training, validation, and test sets.
+
+480p dataset: (854 x 480) 12gb
+https://drive.google.com/drive/u/0/folders/1BZiRsVgp4KEscB0xR_CYZkNkHaOCr1L0
+
+240p dataset: (426 x 240) 3.3gb
+https://drive.google.com/drive/u/0/folders/1xQqYR1VHP3TSzQ7bXP3OKtWqcF34q8yz
