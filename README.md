@@ -6,7 +6,7 @@ Images were extracted from video capture.  About 2 minutes of footage was shot i
 One minute of daytime and nighttime footage respectively, usually in two 30-second takes to vary the background.
 A powershell script is used to establish a frame extract rate and extract the 400 frames plus some extra to replace
  images that were obstructed/blurry or contained other fauna species ignoring birds/critters.
- The shots are for the most part closeup and centered to keep the task focused on discerning between 50 species
+ The shots are for the most part close-up and centered to keep the task focused on discerning between 50 species
  rather than finding the creature in the image.  The images are initially randomized however some normalization
  was done if the ratio of images from some biomes was heavily skewed between the training, validation, and test sets.
 
