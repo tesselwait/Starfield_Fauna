@@ -18,6 +18,9 @@ https://drive.google.com/drive/u/0/folders/1BZiRsVgp4KEscB0xR_CYZkNkHaOCr1L0
 240p dataset: (426 x 240) 3.3gb
 https://drive.google.com/drive/u/0/folders/1xQqYR1VHP3TSzQ7bXP3OKtWqcF34q8yz
 
+144p dataset: (256 x 144) 1.3gb
+https://drive.google.com/drive/u/0/folders/1VmvCZEBPf_V4Rk5_scXcBNzdrdazi5uT
+
 Temp note: 282-bighorn, 271-bighorn, and 448-bighorn were replaced at 8:20pm for other species in background.
 188-lacraia was replaced at 9:35pm, 244-lacraia replaced at 9:55pm, 137-blistercrab replaced at 11:50pm
 463-blistercrab replaced at 12:05am
