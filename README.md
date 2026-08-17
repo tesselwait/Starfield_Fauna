@@ -21,6 +21,6 @@ https://drive.google.com/drive/u/0/folders/1xQqYR1VHP3TSzQ7bXP3OKtWqcF34q8yz
 144p dataset: (256 x 144) 1.3gb
 https://drive.google.com/drive/u/0/folders/1VmvCZEBPf_V4Rk5_scXcBNzdrdazi5uT
 
-Temp note: 282-bighorn, 271-bighorn, 448-bighorn, 188-lacraia, 244-lacraia, 137-blistercrab
-463-blistercrab, 155-cagebrain, 186-cagebrain, 230-cagebrain, 337-cagebrain, 466-cagebrain
-129-brainsprout, 298-bighorn, 263-toadface replaced.
+Temp note: 282-bighorn, 271-bighorn, 448-bighorn, 188-lacraia, 244-lacraia, 137-blistercrab,
+463-blistercrab, 155-cagebrain, 186-cagebrain, 230-cagebrain, 337-cagebrain, 466-cagebrain,
+129-brainsprout, 298-bighorn, 263-toadface, 257-twistfin replaced.
