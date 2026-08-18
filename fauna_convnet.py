@@ -35,6 +35,10 @@ print("categories: "+str(total_categories))
 height, width, channels = img_to_array(load_img(os.path.join(next(iter(categories.values())), next(os.scandir(next(iter(categories.values())))).name))).shape
 print("Width: "+str(width)+", Height: "+str(height))
 
+# 80% 240p Batch size: 25    32-64-128-256-512|1024-512
+# 74% 144p Batch size: 20    32-32-64-128-256|512-256
+# 72% 480p Batch size: 20    32-32-64-128-256|512-256  dataset errors
+
 model = models.Sequential()
 model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(height, width, 3)))
 model.add(layers.MaxPooling2D((2, 2)))
