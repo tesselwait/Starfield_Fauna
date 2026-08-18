@@ -19,7 +19,11 @@ from keras.src.legacy.preprocessing.image import ImageDataGenerator
 
 sections = {}
 categories = {}
-base_dir = 'dataset'
+
+base_dir = 'dataset' # filepath to the folder the data is in or just the folder name if this python file is in the same folder as the dataset base folder
+# This python file will read the image dimensions and set the model to them so you can switch between 'dataset_480' or 'dataset_240' just by switching
+# the base_dir variable as long as the model specified will run on the image dimensions.
+
 for x in os.listdir(base_dir):
     sections[x+'_dir'] = os.path.join(base_dir, x)
 for y in os.listdir(base_dir):
