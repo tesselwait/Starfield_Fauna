@@ -24,4 +24,4 @@ https://drive.google.com/drive/u/0/folders/1VmvCZEBPf_V4Rk5_scXcBNzdrdazi5uT
 Temp note: 282-bighorn, 271-bighorn, 448-bighorn, 188-lacraia, 244-lacraia, 137-blistercrab,
 463-blistercrab, 155-cagebrain, 186-cagebrain, 230-cagebrain, 337-cagebrain, 466-cagebrain,
 129-brainsprout, 298-bighorn, 263-toadface, 257-twistfin, 301-coralcrawler, 466-coralcrawler,
-470-coralcrawler, 472-coralbug, 457-coralbug, 466-crocodaunt replaced.
+470-coralcrawler, 472-coralbug, 457-coralbug, 466-crocodaunt, 120-brightcage replaced.
