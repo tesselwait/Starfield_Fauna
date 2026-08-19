@@ -25,4 +25,4 @@ Temp note: 282-bighorn, 271-bighorn, 448-bighorn, 188-lacraia, 244-lacraia, 137-
 463-blistercrab, 155-cagebrain, 186-cagebrain, 230-cagebrain, 337-cagebrain, 466-cagebrain,
 129-brainsprout, 298-bighorn, 263-toadface, 257-twistfin, 301-coralcrawler, 466-coralcrawler,
 470-coralcrawler, 472-coralbug, 457-coralbug, 466-crocodaunt, 120-brightcage, 314-brightcage, 
-369-brightcage, 495-brightcage replaced.
+369-brightcage, 495-brightcage, 214-maw replaced.
