@@ -15,6 +15,9 @@ A PowerShell script is used to establish a frame extract rate and extract the 40
 480p dataset: (854 x 480) 12gb
 https://drive.google.com/drive/u/0/folders/1BZiRsVgp4KEscB0xR_CYZkNkHaOCr1L0
 
+360p dataset: (640 x 360) 7.1gb
+https://drive.google.com/drive/u/0/folders/1HDswq_w6IHpX8A5dM55aJ1zyzfvTTqWp
+
 240p dataset: (426 x 240) 3.3gb
 https://drive.google.com/drive/u/0/folders/1xQqYR1VHP3TSzQ7bXP3OKtWqcF34q8yz
 
