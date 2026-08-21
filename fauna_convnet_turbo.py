@@ -88,11 +88,11 @@ dataset = tf.data.Dataset.from_tensor_slices((file_paths, labels))
 
 data_augmentation = keras.Sequential([
     layers.Rescaling(1./255),
-    layers.RandomFlip("horizontal"),
-    layers.RandomRotation(0.2),
+    layers.RandomRotation(0.11),
     layers.RandomZoom(0.1),
     layers.RandomShear(0.1),
     layers.RandomTranslation(0.1, 0.1),
+    layers.RandomFlip("horizontal"),
 ])
 
 def load_raw_png(file_path, label):
