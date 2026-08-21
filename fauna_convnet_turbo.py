@@ -76,7 +76,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
     sections['train_dir'],
     target_size=(height, width),
-    batch_size=32,
+    batch_size=25,
     class_mode='sparse',
     shuffle=False
 )
@@ -89,18 +89,11 @@ dataset = tf.data.Dataset.from_tensor_slices((file_paths, labels))
 data_augmentation = keras.Sequential([
     layers.Rescaling(1./255),
     layers.RandomFlip("horizontal"),
-    layers.RandomRotation(0.1),
+    layers.RandomRotation(0.2),
     layers.RandomZoom(0.1),
     layers.RandomShear(0.1),
     layers.RandomTranslation(0.1, 0.1),
-    layers.RandomContrast(0.05)
 ])
-
-def load_and_augment(image_path, label):
-    image = tf.io.read_file(image_path)
-    image = tf.image.decode_png(image, channels=3)
-    image = data_augmentation(image, training=True)
-    return image, label
 
 def load_raw_png(file_path, label):
     image_raw = tf.io.read_file(file_path)
@@ -110,7 +103,7 @@ def load_raw_png(file_path, label):
 AUTOTUNE = tf.data.AUTOTUNE
 dataset = dataset.shuffle(buffer_size=10000)
 dataset = dataset.map(load_raw_png, num_parallel_calls=AUTOTUNE)
-dataset = dataset.batch(32)
+dataset = dataset.batch(25)
 dataset = dataset.map(
     lambda x, y: (data_augmentation(x, training=True), y),
     num_parallel_calls=AUTOTUNE
@@ -120,7 +113,7 @@ dataset = dataset.prefetch(buffer_size=AUTOTUNE)
 validation_generator = test_datagen.flow_from_directory(
         sections['validation_dir'],
         target_size=(height, width),
-        batch_size=32,
+        batch_size=25,
         class_mode='sparse')
 for data_batch, labels_batch in train_generator:
     print('data batch shape:', data_batch.shape)
@@ -133,11 +126,11 @@ history = model.fit(
 test_generator = test_datagen.flow_from_directory(
     sections['test_dir'],
     target_size=(height, width),
-    batch_size=32,
+    batch_size=25,
     class_mode='sparse')
 test_loss, test_acc = model.evaluate(test_generator, steps=4*total_categories)
 print('test acc:', test_acc)
-model.save('fauna_240-32.keras')
+model.save('fauna_240-25.keras')
 acc = history.history['acc']
 val_acc = history.history['val_acc']
 loss = history.history['loss']
