@@ -3,6 +3,7 @@ import tensorflow as tf
 import keras
 keras.__version__
 import numpy
+import math
 import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras import layers
@@ -21,6 +22,9 @@ from keras.src.legacy.preprocessing.image import ImageDataGenerator
 
 sections = {}
 categories = {}
+
+batch_size = 25
+epochs = 200
 
 base_dir = 'dataset_240' # filepath to the folder the data is in or just the folder name if this python file is in the same folder as the dataset base folder
 # This python file will read the image dimensions and set the model to them so you can switch between 'dataset_480' or 'dataset_240' just by switching
@@ -76,7 +80,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
     sections['train_dir'],
     target_size=(height, width),
-    batch_size=25,
+    batch_size=batch_size,
     class_mode='sparse',
     shuffle=False
 )
@@ -88,7 +92,7 @@ dataset = tf.data.Dataset.from_tensor_slices((file_paths, labels))
 
 data_augmentation = keras.Sequential([
     layers.Rescaling(1./255),
-    layers.RandomRotation(0.11),
+    layers.RandomRotation(0.056),  # 15 degrees: .0416 - 20 degrees: .0556
     layers.RandomZoom(0.1),
     layers.RandomShear(0.1),
     layers.RandomTranslation(0.1, 0.1),
@@ -103,7 +107,7 @@ def load_raw_png(file_path, label):
 AUTOTUNE = tf.data.AUTOTUNE
 dataset = dataset.shuffle(buffer_size=10000)
 dataset = dataset.map(load_raw_png, num_parallel_calls=AUTOTUNE)
-dataset = dataset.batch(25)
+dataset = dataset.batch(batch_size)
 dataset = dataset.map(
     lambda x, y: (data_augmentation(x, training=True), y),
     num_parallel_calls=AUTOTUNE
@@ -113,7 +117,7 @@ dataset = dataset.prefetch(buffer_size=AUTOTUNE)
 validation_generator = test_datagen.flow_from_directory(
         sections['validation_dir'],
         target_size=(height, width),
-        batch_size=25,
+        batch_size=batch_size,
         class_mode='sparse')
 for data_batch, labels_batch in train_generator:
     print('data batch shape:', data_batch.shape)
@@ -121,16 +125,16 @@ for data_batch, labels_batch in train_generator:
     break
 history = model.fit(
       x=dataset,
-      epochs=200,
+      epochs=epochs,
       validation_data=validation_generator)
 test_generator = test_datagen.flow_from_directory(
     sections['test_dir'],
     target_size=(height, width),
-    batch_size=25,
+    batch_size=batch_size,
     class_mode='sparse')
-test_loss, test_acc = model.evaluate(test_generator, steps=4*total_categories)
-print('test acc:', test_acc)
 model.save('fauna_240-25.keras')
+test_loss, test_acc = model.evaluate(test_generator, steps=(math.ceil(100.0/batch_size)*total_categories))
+print('test acc:', test_acc)
 acc = history.history['acc']
 val_acc = history.history['val_acc']
 loss = history.history['loss']
