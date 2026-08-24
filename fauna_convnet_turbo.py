@@ -133,7 +133,7 @@ test_generator = test_datagen.flow_from_directory(
     batch_size=batch_size,
     class_mode='sparse')
 model.save('fauna_240-25.keras')
-test_loss, test_acc = model.evaluate(test_generator, steps=math.ceil((100*total_categories)/batch_size))
+test_loss, test_acc = model.evaluate(test_generator, steps=math.ceil((100.0*total_categories)/batch_size))
 print('test acc:', test_acc)
 acc = history.history['acc']
 val_acc = history.history['val_acc']
