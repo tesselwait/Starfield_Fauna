@@ -24,8 +24,5 @@ https://drive.google.com/drive/u/0/folders/1xQqYR1VHP3TSzQ7bXP3OKtWqcF34q8yz
 144p dataset: (256 x 144) 1.3gb
 https://drive.google.com/drive/u/0/folders/1VmvCZEBPf_V4Rk5_scXcBNzdrdazi5uT
 
-Temp note: 282-bighorn, 271-bighorn, 448-bighorn, 188-lacraia, 244-lacraia, 137-blistercrab,
-463-blistercrab, 155-cagebrain, 186-cagebrain, 230-cagebrain, 337-cagebrain, 466-cagebrain,
-129-brainsprout, 298-bighorn, 263-toadface, 257-twistfin, 301-coralcrawler, 466-coralcrawler,
-470-coralcrawler, 472-coralbug, 457-coralbug, 466-crocodaunt, 120-brightcage, 314-brightcage, 
-369-brightcage, 495-brightcage, 214-maw, 187-twistfin, 497-twistfin, 207-longhorn, 228-angler replaced.
+Temp note: 206-dodo, 268-maw, 352-cagebrain, 400-maw, 443-maw, 450-maw, 413-beetlecrab, 498-vectorback replaced.
+Sunflower files renamed to Train: 100s, 200s Val: 300s Test: 400s format.
