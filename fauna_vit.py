@@ -6,6 +6,7 @@ from keras import layers
 from keras import ops
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 physical_devices = tf.config.list_physical_devices('GPU')
 try:
@@ -63,10 +64,17 @@ y_test = np.expand_dims(y_test, axis=-1)
 print(f"x_train shape: {x_train.shape} - y_train shape: {y_train.shape}")
 print(f"x_test shape: {x_test.shape} - y_test shape: {y_test.shape}")
 
-learning_rate = 0.001
-weight_decay = 0.00009
+learning_rate = 0.001 # Linear warmup cosine decay learning schedule
+weight_decay = 0.05   #  Best runs with conventional weight decay used 0.00008
 batch_size = BATCH_SIZE
-num_epochs = 200
+num_epochs = 120
+
+training_set_size = 10000
+peak_lr=.001
+steps_per_epoch = math.ceil(training_set_size / batch_size)
+total_steps = steps_per_epoch * num_epochs
+warmup_steps = int(total_steps * 0.1)
+decay_steps = total_steps - warmup_steps
 image_height = 72
 image_width = 128
 patch_size = 8
@@ -88,8 +96,8 @@ data_augmentation = keras.Sequential(
         layers.Normalization(),
         layers.Resizing(image_height, image_width),
         layers.RandomFlip("horizontal"),
-        #layers.RandomShear(0.1, 0.1), #    shear and translation will run but won't load
-        #layers.RandomTranslation(0.1, 0.1),#  in mixture of experts
+        layers.RandomShear(x_factor=(0.0, 0.1), y_factor=(0.0, 0.1)), 
+        layers.RandomTranslation(width_factor=(0.0, 0.1), height_factor=(0.0, 0.1)),
         layers.RandomRotation(factor=0.0556),
         layers.RandomZoom(height_factor=0.1, width_factor=0.1),
     ],
@@ -203,8 +211,15 @@ def create_vit_classifier():
     return model
 
 def run_experiment(model):
-    optimizer = keras.optimizers.AdamW(
-        learning_rate=learning_rate, weight_decay=weight_decay
+    lr_schedule = keras.optimizers.schedules.CosineDecay(
+    initial_learning_rate=0.0,
+    decay_steps=decay_steps,
+    alpha=0.01,
+    warmup_target=peak_lr,
+    warmup_steps=warmup_steps)
+
+    optimizer = keras.optimizers.AdamW( # There were instances of Adam getting higher accuracy than AdamW.
+        learning_rate=lr_schedule, weight_decay=weight_decay
     )
 
     model.compile(
@@ -246,7 +261,7 @@ def plot_history(item):
     plt.plot(history.history["val_" + item], label="val_" + item)
     plt.xlabel("Epochs")
     plt.ylabel(item)
-    plt.title("Train and Validation {} Over Epochs".format(item), fontsize=14)
+    plt.title("Train and Validation {} ".format(item), fontsize=14)
     plt.legend()
     plt.grid()
     plt.show()
