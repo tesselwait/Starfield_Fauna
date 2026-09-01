@@ -33,7 +33,7 @@ val_ds = keras.utils.image_dataset_from_directory(
 )
 
 train_ds_comb = train_ds.concatenate(val_ds)
-AUTOTUNE = tf. data.AUTOTUNE
+AUTOTUNE = tf.data.AUTOTUNE
 train_ds_comb = train_ds_comb.shuffle(buffer_size=500).prefetch(buffer_size=AUTOTUNE)
 
 
