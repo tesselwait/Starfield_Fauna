@@ -21,11 +21,11 @@ from keras.preprocessing import image
 from keras.src.legacy.preprocessing.image import ImageDataGenerator
 
 
-# Mixture of Experts: 82%(90% Top-2) Accuracy Convnet Model and 79%(88% Top-2) Accuracy Vision Transformer Model
+# Mixture of Experts: 82%(90% Top-2) Accuracy Convnet Model and 82%(89% Top-2) Accuracy Vision Transformer Model
 # (72, 128) images. 2-1-1 train/val/test split
 # (softmax(convnet) + softmax(ViT)) / 2
-# 87% accuracy.
-# 93% top 2 choices accuracy.
+# 89% accuracy.
+# 94% top 2 choices accuracy.
 
  ###  ViT Class Definitions ###
 @keras.saving.register_keras_serializable()
