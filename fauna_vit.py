@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
+
 physical_devices = tf.config.list_physical_devices('GPU')
 try:
   tf.config.experimental.set_memory_growth(physical_devices[0], True)
@@ -16,10 +17,10 @@ except:
 
 num_classes = 50
 input_shape = (72, 128, 3)
-BATCH_SIZE = 128
+BATCH_SIZE = 32 # 32: 81.7% in 1:50
+                # 64: 81.4% in 1:10
 
 dataset="dataset_72"
-
 train_ds = keras.utils.image_dataset_from_directory(
     os.path.join(dataset, 'train'),
     image_size=(72, 128),
@@ -34,7 +35,7 @@ val_ds = keras.utils.image_dataset_from_directory(
 
 train_ds_comb = train_ds.concatenate(val_ds)
 AUTOTUNE = tf.data.AUTOTUNE
-train_ds_comb = train_ds_comb.shuffle(buffer_size=500).prefetch(buffer_size=AUTOTUNE)
+train_ds_comb = train_ds_comb.shuffle(buffer_size=256).prefetch(buffer_size=AUTOTUNE)
 
 
 test_ds = keras.utils.image_dataset_from_directory(
@@ -87,8 +88,8 @@ transformer_units = [
 ]
 transformer_layers = 4
 mlp_head_units = [
+    2048,
     1024,
-    512,
 ]
 
 data_augmentation = keras.Sequential(
@@ -195,17 +196,17 @@ def create_vit_classifier():
     for _ in range(transformer_layers):
         x1 = layers.LayerNormalization(epsilon=1e-6)(encoded_patches)
         attention_output = layers.MultiHeadAttention(
-            num_heads=num_heads, key_dim=projection_dim, dropout=0.3#.1
+            num_heads=num_heads, key_dim=projection_dim, dropout=0.4
         )(x1, x1)
         x2 = layers.Add()([attention_output, encoded_patches])
         x3 = layers.LayerNormalization(epsilon=1e-6)(x2)
-        x3 = mlp(x3, hidden_units=transformer_units, dropout_rate=0.3)#.1
+        x3 = mlp(x3, hidden_units=transformer_units, dropout_rate=0.4) 
         encoded_patches = layers.Add()([x3, x2])
 
     representation = layers.LayerNormalization(epsilon=1e-6)(encoded_patches)
     representation = layers.Flatten()(representation)
-    representation = layers.Dropout(0.3)(representation)#.5
-    features = mlp(representation, hidden_units=mlp_head_units, dropout_rate=0.3)#.5
+    representation = layers.Dropout(0.4)(representation) 
+    features = mlp(representation, hidden_units=mlp_head_units, dropout_rate=0.4) 
     logits = layers.Dense(num_classes)(features)
     model = keras.Model(inputs=inputs, outputs=logits)
     return model
@@ -218,7 +219,7 @@ def run_experiment(model):
     warmup_target=peak_lr,
     warmup_steps=warmup_steps)
 
-    optimizer = keras.optimizers.AdamW( # There were instances of Adam getting higher accuracy than AdamW.
+    optimizer = keras.optimizers.Adam( # There were instances of Adam getting higher accuracy than AdamW.
         learning_rate=lr_schedule, weight_decay=weight_decay
     )
 
