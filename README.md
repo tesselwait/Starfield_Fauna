@@ -24,5 +24,5 @@ https://drive.google.com/drive/u/0/folders/1xQqYR1VHP3TSzQ7bXP3OKtWqcF34q8yz
 144p dataset: (256 x 144) 1.3gb
 https://drive.google.com/drive/u/0/folders/1VmvCZEBPf_V4Rk5_scXcBNzdrdazi5uT
 
-Temp note: 206-dodo, 268-maw, 352-cagebrain, 400-maw, 443-maw, 450-maw, 413-beetlecrab, 498-vectorback, 134-mossgnath, 490-mossgnath, 168-twistfin, 265-twistfin, 435-twistfin, 490-twistfin, 281-coralbug, 457-cutterhead, 426-shroomhead, 293-vectorback, 412-leafbug replaced.
+Temp note: 206-dodo, 268-maw, 352-cagebrain, 400-maw, 443-maw, 450-maw, 413-beetlecrab, 498-vectorback, 134-mossgnath, 490-mossgnath, 168-twistfin, 265-twistfin, 435-twistfin, 490-twistfin, 281-coralbug, 457-cutterhead, 426-shroomhead, 293-vectorback, 412-leafbug, 316-anklyosaurus, 380-anklyosaurus replaced.
 Sunflower files renamed to Train: 100s, 200s Val: 300s Test: 400s format.
